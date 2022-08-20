@@ -1,9 +1,9 @@
-defmodule ElixirBoilerplate.Mixfile do
+defmodule NotionReader.Mixfile do
   use Mix.Project
 
   def project do
     [
-      app: :elixir_boilerplate,
+      app: :notion_reader,
       version: "0.0.1",
       erlang: "~> 25.0",
       elixir: "~> 1.13",
@@ -23,7 +23,7 @@ defmodule ElixirBoilerplate.Mixfile do
 
   def application do
     [
-      mod: {ElixirBoilerplate.Application, []},
+      mod: {NotionReader.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end
@@ -109,16 +109,16 @@ defmodule ElixirBoilerplate.Mixfile do
 
   defp dialyzer do
     [
-      plt_file: {:no_warn, "priv/plts/elixir_boilerplate.plt"},
+      plt_file: {:no_warn, "priv/plts/notion_reader.plt"},
       plt_add_apps: [:mix, :ex_unit]
     ]
   end
 
   defp releases do
     [
-      elixir_boilerplate: [
-        version: {:from_app, :elixir_boilerplate},
-        applications: [elixir_boilerplate: :permanent],
+      notion_reader: [
+        version: {:from_app, :notion_reader},
+        applications: [notion_reader: :permanent],
         include_executables_for: [:unix],
         steps: [:assemble, :tar]
       ]

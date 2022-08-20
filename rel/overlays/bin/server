@@ -2,6 +2,6 @@
 cd -P -- "$(dirname -- "$0")"
 
 # Always run migrations
-./elixir_boilerplate eval ElixirBoilerplate.Release.migrate
+./notion_reader eval NotionReader.Release.migrate
 
-exec ./elixir_boilerplate start
+exec ./notion_reader start

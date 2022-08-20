@@ -1,4 +1,4 @@
-defmodule ElixirBoilerplate.GettextInterpolation do
+defmodule NotionReader.GettextInterpolation do
   @moduledoc """
   Default Gettext.Interpolation implementation for testing purposes
 

@@ -1,6 +1,6 @@
 import Config
 
-config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
+config :notion_reader, NotionReaderWeb.Endpoint,
   cache_static_manifest: "priv/static/cache_manifest.json",
   server: true
 

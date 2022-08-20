@@ -2,23 +2,23 @@ import Config
 
 version = Mix.Project.config()[:version]
 
-config :elixir_boilerplate,
-  ecto_repos: [ElixirBoilerplate.Repo],
+config :notion_reader,
+  ecto_repos: [NotionReader.Repo],
   version: version
 
 config :phoenix, :json_library, Jason
 
-config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint,
-  pubsub_server: ElixirBoilerplate.PubSub,
-  render_errors: [view: ElixirBoilerplateWeb.Errors.View, accepts: ~w(html json)]
+config :notion_reader, NotionReaderWeb.Endpoint,
+  pubsub_server: NotionReader.PubSub,
+  render_errors: [view: NotionReaderWeb.Errors.View, accepts: ~w(html json)]
 
-config :elixir_boilerplate, ElixirBoilerplate.Repo, start_apps_before_migration: [:ssl]
+config :notion_reader, NotionReader.Repo, start_apps_before_migration: [:ssl]
 
-config :elixir_boilerplate, Corsica, allow_headers: :all
+config :notion_reader, Corsica, allow_headers: :all
 
-config :elixir_boilerplate, ElixirBoilerplate.Gettext, default_locale: "en"
+config :notion_reader, NotionReader.Gettext, default_locale: "en"
 
-config :elixir_boilerplate, ElixirBoilerplateWeb.ContentSecurityPolicy, allow_unsafe_scripts: false
+config :notion_reader, NotionReaderWeb.ContentSecurityPolicy, allow_unsafe_scripts: false
 
 config :esbuild,
   version: "0.14.41",

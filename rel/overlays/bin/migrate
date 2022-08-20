@@ -1,4 +1,4 @@
 #!/bin/sh
 cd -P -- "$(dirname -- "$0")"
 
-exec ./elixir_boilerplate eval ElixirBoilerplate.Release.migrate
+exec ./notion_reader eval NotionReader.Release.migrate

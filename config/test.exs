@@ -14,13 +14,13 @@ defmodule TestEnvironment do
   end
 end
 
-config :elixir_boilerplate, ElixirBoilerplate.Repo,
+config :notion_reader, NotionReader.Repo,
   pool: Ecto.Adapters.SQL.Sandbox,
   url: TestEnvironment.get_database_url()
 
-config :elixir_boilerplate, ElixirBoilerplateWeb.Endpoint, server: false
+config :notion_reader, NotionReaderWeb.Endpoint, server: false
 
 # This config is to output keys instead of translated message in test
-config :elixir_boilerplate, ElixirBoilerplate.Gettext, priv: "priv/null", interpolation: ElixirBoilerplate.GettextInterpolation
+config :notion_reader, NotionReader.Gettext, priv: "priv/null", interpolation: NotionReader.GettextInterpolation
 
 config :logger, level: :warn
