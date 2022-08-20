@@ -1,0 +1,62 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - "**"
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        otp-version: [25.0]
+        elixir-version: [1.13]
+
+    services:
+      db:
+        image: postgres:14
+        env:
+          POSTGRES_DB: elixir_boilerplate_test
+          POSTGRES_PASSWORD: boilerplate
+        ports: ["5432:5432"]
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+
+    env:
+      MIX_ENV: test
+      DATABASE_URL: postgres://postgres:boilerplate@localhost/elixir_boilerplate_test
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: erlef/setup-elixir@v1
+        with:
+          otp-version: ${{ matrix.otp-version }}
+          elixir-version: ${{ matrix.elixir-version }}
+
+      - uses: actions/cache@v3
+        with:
+          path: |
+            deps
+            _build
+            priv/plts
+          key: ${{ runner.os }}-mix-${{ matrix.otp-version }}-${{ matrix.elixir-version }}-${{ hashFiles(format('{0}/mix.lock', github.workspace)) }}
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16.15
+          cache: 'npm'
+
+      - name: Setup environment variables
+        uses: c-py/action-dotenv-to-setenv@v2
+        with:
+          env-file: .env.test
+
+      - run: make prepare
+      - run: make check
+      - run: make lint
+      - run: make test
+      - run: make build DOCKER_IMAGE_TAG=latest
